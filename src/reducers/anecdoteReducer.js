@@ -25,6 +25,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "VOTE":
       return [...state];
+    case "NEW_NOTE":
+      return [...state.concat(action.data)];
     default:
       return state;
   }
