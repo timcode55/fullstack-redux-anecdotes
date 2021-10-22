@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 const anecdotesAtStart = [
   "If it hurts, do it more often",
   "Adding manpower to a late software project makes it later!",
@@ -23,6 +21,13 @@ const initialState = anecdotesAtStart.map(asObject);
 
 const generateId = () => Math.floor(Math.random() * 1000);
 
+export const notificationReducer = () => {
+  return {
+    type: "SHOW_NOTIFICATION",
+    data: {}
+  };
+};
+
 export const createAnecdote = (content) => {
   return {
     type: "NEW_NOTE",
@@ -43,7 +48,7 @@ export const vote = (id) => {
   };
 };
 
-const reducer = (state = initialState, action) => {
+const anecdoteReducer = (state = initialState, action) => {
   console.log(action, "ACTION******");
   console.log(state, "STATE");
   switch (action.type) {
@@ -64,4 +69,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default anecdoteReducer;

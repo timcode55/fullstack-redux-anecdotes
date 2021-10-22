@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { createAnecdote } from "../reducers/anecdoteReducer";
+import { filterChange } from "../reducers/notificationReducer";
 
 const NewAnecdote = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,10 @@ const NewAnecdote = () => {
     event.target.anecdote.value = "";
     console.log(content, "CONTENT");
     dispatch(createAnecdote(content));
+    setTimeout(() => {
+      dispatch(filterChange(""));
+    }, 3000);
+    dispatch(filterChange(`You added the note ${content}`));
   };
   return (
     <div>
