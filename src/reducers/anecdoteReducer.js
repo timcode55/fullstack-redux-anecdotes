@@ -49,8 +49,6 @@ export const vote = (id) => {
 };
 
 const anecdoteReducer = (state = initialState, action) => {
-  console.log(action, "ACTION******");
-  console.log(state, "STATE");
   switch (action.type) {
     case "VOTE":
       const id = action.data.id;
@@ -59,7 +57,6 @@ const anecdoteReducer = (state = initialState, action) => {
         ...noteToChange,
         votes: (noteToChange.votes += 1)
       };
-      console.log(changedNote, "CHANGED NOTE VOTES + 1");
       return state.map((note) => (note.id !== id ? note : changedNote));
 
     case "NEW_NOTE":

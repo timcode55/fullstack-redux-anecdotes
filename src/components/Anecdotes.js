@@ -5,16 +5,19 @@ import { filterChange } from "../reducers/notificationReducer";
 
 const Anecdotes = () => {
   const dispatch = useDispatch();
-  const anecdotes = useSelector((state) => state);
-  console.log(anecdotes, "ANECDOTES BEFORE ERROR*******");
+  const anecdotes = useSelector((state) => state.notes);
+  const filter = useSelector((state) => state.filter);
+  console.log(filter, "FILTER IN ANECDOTES");
 
-  const sortAnecdotes = anecdotes.notes.sort((a, b) =>
-    a.votes > b.votes ? -1 : 1
+  const sortAnecdotes = anecdotes.sort((a, b) => (a.votes > b.votes ? -1 : 1));
+
+  const dotesToShow = sortAnecdotes.filter((item) =>
+    item.content?.toLowerCase().includes(filter)
   );
-  console.log(sortAnecdotes, "SORTED ANECDOTES");
+
   return (
     <div>
-      {sortAnecdotes.map((anecdote) => (
+      {dotesToShow.map((anecdote) => (
         <div key={anecdote.id}>
           <div>{anecdote.content}</div>
           <div>
