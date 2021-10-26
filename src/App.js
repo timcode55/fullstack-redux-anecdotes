@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Anecdotes from "./components/Anecdotes";
 import NewAnecdote from "./components/NewAnecdote";
 import Notification from "./components/Notification";
 import FilterAnecdotes from "./components/FilterAnecdotes";
 import { useSelector } from "react-redux";
+import doteService from "./services/anecdotes";
+import { initializeAnecdotes } from "./reducers/anecdoteReducer";
+import { useDispatch } from "react-redux";
 
 const App = () => {
-  // const [filterDote, setFilterDote] = useState("");
-  // const handleFilterDotes = (e) => {
-  //   setFilterDote(e.target.value);
-  // };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    doteService
+      .getAll()
+      .then((anecdotes) => dispatch(initializeAnecdotes(anecdotes)));
+  }, [dispatch]);
 
   const showNotification = useSelector((state) => state.show);
   return (

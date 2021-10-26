@@ -7,10 +7,8 @@ const Anecdotes = () => {
   const dispatch = useDispatch();
   const anecdotes = useSelector((state) => state.notes);
   const filter = useSelector((state) => state.filter);
-  console.log(filter, "FILTER IN ANECDOTES");
 
   const sortAnecdotes = anecdotes.sort((a, b) => (a.votes > b.votes ? -1 : 1));
-
   const dotesToShow = sortAnecdotes.filter((item) =>
     item.content?.toLowerCase().includes(filter)
   );

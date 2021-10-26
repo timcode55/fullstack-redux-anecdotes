@@ -2,16 +2,17 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { createAnecdote } from "../reducers/anecdoteReducer";
 import { filterChange } from "../reducers/notificationReducer";
+import doteService from "../services/anecdotes";
 
 const NewAnecdote = () => {
   const dispatch = useDispatch();
 
-  const addAnecdote = (event) => {
+  const addAnecdote = async (event) => {
     event.preventDefault();
     const content = event.target.anecdote.value;
     event.target.anecdote.value = "";
-    console.log(content, "CONTENT");
-    dispatch(createAnecdote(content));
+    const newAnecdote = await doteService.createNew(content);
+    dispatch(createAnecdote(newAnecdote));
     setTimeout(() => {
       dispatch(filterChange(""));
     }, 3000);
