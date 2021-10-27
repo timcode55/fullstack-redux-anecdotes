@@ -24,13 +24,9 @@ const addVote = async (id) => {
   console.log(typeof id, "ID AFTER VOTE CLICK");
   const getRecords = await getAll();
   const recordToAddVote = getRecords.filter((item) => item.id === id);
-  // console.log(recordToAddVote[0], "TEST IN GETALL");
   const object = recordToAddVote[0];
-  // object.votes += 1;
-  // console.log(object, "OBJECT TO MAN");
+  object.votes += 1;
   const response = await axios.put(`${baseUrl}/${id}`, object);
-  // console.log(response, "RESPONSE IN ADDVOTE*****");
   return response.data;
 };
-// addVote();
 export default { getAll, createNew, anecdoteList, addVote };
