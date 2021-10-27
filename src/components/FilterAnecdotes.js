@@ -7,7 +7,6 @@ const FilterAnecdotes = () => {
   const dispatch = useDispatch();
   const anecdotes = useSelector((state) => state.notes);
   console.log(anecdotes, "ANECDOTES((");
-  console.log(filterDote, " FILTERDOTE");
   dispatch(filterAnecdote(filterDote));
   return (
     <div>

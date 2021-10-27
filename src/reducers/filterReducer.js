@@ -8,7 +8,6 @@ const filterReducer = (state = "", action) => {
 };
 
 export const filterAnecdote = (filteredDote) => {
-  console.log("filterreducer called");
   return {
     type: "FILTER_ANECDOTES",
     filteredDote
