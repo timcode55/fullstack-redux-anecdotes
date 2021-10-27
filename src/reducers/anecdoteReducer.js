@@ -1,3 +1,5 @@
+import doteService from "../services/anecdotes";
+
 export const notificationReducer = () => {
   return {
     type: "SHOW_NOTIFICATION",
@@ -5,28 +7,36 @@ export const notificationReducer = () => {
   };
 };
 
-export const initializeAnecdotes = (anecdotes) => {
-  return {
-    type: "INIT_NOTES",
-    data: anecdotes
+export const initializeAnecdotes = () => {
+  return async (dispatch) => {
+    const anecdotes = await doteService.getAll();
+    dispatch({
+      type: "INIT_NOTES",
+      data: anecdotes
+    });
   };
 };
 
 export const createAnecdote = (content) => {
-  return {
-    type: "NEW_NOTE",
-    data: {
-      content
-    }
+  return async (dispatch) => {
+    console.log("createanecdote called");
+    const newAnecdote = await doteService.createNew(content);
+    console.log(newAnecdote, "NEWANECDOTE CHECK");
+    dispatch({
+      type: "NEW_NOTE",
+      data: newAnecdote
+    });
   };
 };
 
 export const vote = (id) => {
   console.log("vote", id);
-
-  return {
-    type: "VOTE",
-    data: { id }
+  return async (dispatch) => {
+    const updateVote = await doteService.addVote(id);
+    dispatch({
+      type: "VOTE",
+      data: updateVote
+    });
   };
 };
 
@@ -42,7 +52,7 @@ const anecdoteReducer = (state = [], action) => {
       return state.map((note) => (note.id !== id ? note : changedNote));
 
     case "NEW_NOTE":
-      return [...state, action.data.content];
+      return [...state, action.data];
     default:
       return state;
     case "INIT_NOTES":

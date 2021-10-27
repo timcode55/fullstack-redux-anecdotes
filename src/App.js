@@ -11,9 +11,7 @@ import { useDispatch } from "react-redux";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    doteService
-      .getAll()
-      .then((anecdotes) => dispatch(initializeAnecdotes(anecdotes)));
+    dispatch(initializeAnecdotes());
   }, [dispatch]);
 
   const showNotification = useSelector((state) => state.show);
