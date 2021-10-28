@@ -23,10 +23,9 @@ const Anecdotes = () => {
             <button
               onClick={() => {
                 dispatch(vote(anecdote.id));
-                setTimeout(() => {
-                  dispatch(filterChange(""));
-                }, 3000);
-                dispatch(filterChange(`You voted for ${anecdote.content}`));
+                dispatch(
+                  filterChange(`You voted for ${anecdote.content}`, 1000)
+                );
               }}
             >
               vote

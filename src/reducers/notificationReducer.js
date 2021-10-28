@@ -1,5 +1,3 @@
-import { useDispatch } from "react-redux";
-
 const notificationReducer = (state = "", action) => {
   switch (action.type) {
     case "SHOW_NOTIFICATION":
@@ -29,7 +27,7 @@ export const filterChange = (show, time) => {
   return (dispatch) => {
     setTimeout(() => {
       dispatch(removeNotification(""));
-    }, 2000);
+    }, time);
     dispatch(showNotification(show));
   };
 };

@@ -1,12 +1,5 @@
 import doteService from "../services/anecdotes";
 
-export const notificationReducer = () => {
-  return {
-    type: "SHOW_NOTIFICATION",
-    data: {}
-  };
-};
-
 export const initializeAnecdotes = () => {
   return async (dispatch) => {
     const anecdotes = await doteService.getAll();
