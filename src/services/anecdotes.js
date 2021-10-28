@@ -8,10 +8,8 @@ const getAll = async () => {
 };
 
 const createNew = async (content) => {
-  console.log(content, "CONTENT IN CREATENEW");
   const object = { content, votes: 0 };
   const response = await axios.post(baseUrl, object);
-  console.log(response, "RESPONSE IN CREATENEW");
   return response.data;
 };
 
@@ -21,7 +19,6 @@ const anecdoteList = async (anecdotes) => {
 };
 
 const addVote = async (id) => {
-  console.log(typeof id, "ID AFTER VOTE CLICK");
   const getRecords = await getAll();
   const recordToAddVote = getRecords.filter((item) => item.id === id);
   const object = recordToAddVote[0];

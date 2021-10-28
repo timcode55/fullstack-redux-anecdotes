@@ -14,7 +14,7 @@ const App = () => {
     dispatch(initializeAnecdotes());
   }, [dispatch]);
 
-  const showNotification = useSelector((state) => state.show);
+  const showNotification = useSelector((state) => state.notification);
   return (
     <div>
       <h2>Anecdotes</h2>

@@ -19,9 +19,7 @@ export const initializeAnecdotes = () => {
 
 export const createAnecdote = (content) => {
   return async (dispatch) => {
-    console.log("createanecdote called");
     const newAnecdote = await doteService.createNew(content);
-    console.log(newAnecdote, "NEWANECDOTE CHECK");
     dispatch({
       type: "NEW_NOTE",
       data: newAnecdote
@@ -30,7 +28,6 @@ export const createAnecdote = (content) => {
 };
 
 export const vote = (id) => {
-  console.log("vote", id);
   return async (dispatch) => {
     const updateVote = await doteService.addVote(id);
     dispatch({

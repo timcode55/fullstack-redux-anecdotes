@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { createAnecdote } from "../reducers/anecdoteReducer";
 import { filterChange } from "../reducers/notificationReducer";
+import { removeNotification } from "../reducers/notificationReducer";
 import doteService from "../services/anecdotes";
 
 const NewAnecdote = () => {
@@ -12,10 +13,10 @@ const NewAnecdote = () => {
     const content = event.target.anecdote.value;
     event.target.anecdote.value = "";
     dispatch(createAnecdote(content));
-    setTimeout(() => {
-      dispatch(filterChange(""));
-    }, 3000);
-    dispatch(filterChange(`You added the note ${content}`));
+    // setTimeout(() => {
+    //   dispatch(removeNotification(""));
+    // }, 3000);
+    dispatch(filterChange(`Anecdote added ${content}`, 4000));
   };
   return (
     <div>
